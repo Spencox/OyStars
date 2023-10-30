@@ -1,0 +1,35 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url(../images/oyster-lemon-gif.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#app-title {
+    font-family: 'Girassol', serif;
+    font-size: 150px;
+    text-align: center;
+    color: white;
+    letter-spacing: 5px;
+}
+
+#quote {
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.search-button-container {
+    position: relative;
+    z-index: 1;
+    margin-top: 100px;
+    text-align: center;
+}
