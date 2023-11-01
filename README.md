@@ -26,6 +26,9 @@ CITE - https://docs.developer.yelp.com/reference/v3_business_search
 
 CITE - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent 
 
+CITE - https://stackoverflow.com/questions/53357891/how-do-i-resolve-the-cors-error-in-yelp-api-call
+
+CITE - https://www.scaler.com/topics/javascript-sort-an-array-of-objects/ 
 
 ## Features
 
