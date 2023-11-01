@@ -5,6 +5,8 @@ html, body {
     padding: 0;
 }
 
+
+
 /* style for main page html file */
 #main-page-body {
     background-image: url(../images/oyster-lemon-gif.gif);
@@ -36,9 +38,14 @@ html, body {
     text-align: center;
 }
 
-/* style for search page html file */
 
+
+/* style for search page html file */
 #search-title {
     font-family: 'Girassol', serif;
     font-size: 80px;
+}
+
+#search-page-body {
+    background-color: rgb(184, 184, 184);
 }
