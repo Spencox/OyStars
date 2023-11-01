@@ -912,6 +912,8 @@ const sampleResults = {
     }
 }
 
+
+
 console.log(sampleResults.businesses.length)
 
 // helper function to convert meters to miles
@@ -937,18 +939,35 @@ const searchUrl = `https://api.yelp.com/v3/businesses/search?location=${city}&te
 
 console.log(searchUrl);
 
-// api header and method
-const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${apiKey}`
-    }
-  };
+// // api header and method
+// const options = {
+//     method: 'GET',
+//     headers: {
+//       accept: '*/*',
+//       Authorization: `Bearer ${apiKey}`,
+//       'Access-Control-Allow-Origin': '*'
+//     }
+//   };
   
-  // api call to businesses  
-  fetch(searchUrl, options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
+//   // api call to businesses  
+//   fetch(searchUrl, options)
+//     .then(response => response.json())
+//     .then(response => console.log(response))
+//     .catch(err => console.error(err));
 
+fetch('https://api.yelp.com/v3/businesses/search?location=New%20Orleans&term=Oyster%20Bar&sort_by=rating&limit=5', {
+  method: 'GET',
+  headers: {
+    'Authorization': `Bearer ${apiKey}`,
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  },
+})
+
+.then(response => response.json())
+.then(data => {
+ console.log(data);
+})
+.catch(error => {
+  console.error('Error:', error);
+});
