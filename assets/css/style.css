@@ -49,3 +49,8 @@ html, body {
 #search-page-body {
     background-color: rgb(184, 184, 184);
 }
+
+.rate-button {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+}
