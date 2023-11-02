@@ -1,8 +1,8 @@
 
-const searchButton = document.getElementById("search-oysters")
-searchButton.addEventListener("click", function() {
-    window.location.href = "search-page.html"
-});
+// const searchButton = document.getElementById("search-oysters")
+// searchButton.addEventListener("click", function() {
+//     window.location.href = "search-page.html"
+// });
 
 // DOM variables
 const oysterBarShowEl = $('.card .box.custom-box p');
