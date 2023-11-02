@@ -5,7 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Oystar Test API</title>
+    <!-- bulma styling-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- mapbox API styling-->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <!-- custom styling-->
     <style>
         .custom-box {
             border: 2px solid black;
@@ -15,64 +19,69 @@
 </head>
 
 <body>
-    <div class="container is-flex is-align-items-center is-justify-content-center" style="height: 100vh;">
-        <div class="column is-half">
-            <div class="card is-outlined">
-                <!-- search bar-->
-                <div class="field has-addons">
-                    <div class="control is-expanded">
-                        <input class="input" type="text" placeholder="Type in City Name">
-                    </div>
-                    <div class="control">
-                        <a class="button is-info">Search</a>
-                    </div>
-                </div>
-                <!-- results from API -->
-                <div class="box custom-box">
-                    <div class="media">
-                        <div class="media-content" style="display: flex; justify-content: space-between; align-items: center;">
-                            <p class="title is-4">John Smith</p>
-                            <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+    <div id="side-by-side" class="container is-flex is-align-items-center">
+        <div class="container is-flex is-align-items-center is-justify-content-center" style="height: 100vh;">
+            <div class="column is-half">
+                <div class="card is-outlined">
+                    <!-- search bar-->
+                    <form is="search-form-2" class="field has-addons" role="search">
+                        <div class="control is-expanded">
+                            <input id="search-2" class="input" type="search" placeholder="Type in City Name">
+                        </div>
+                        <div class="control">
+                            <button type="submit" class="button is-info">Search</button>
+                        </div>
+                    </form>
+                    <!-- results from API -->
+                    <div class="box custom-box">
+                        <div class="media">
+                            <div class="media-content" style="display: flex; justify-content: space-between; align-items: center;">
+                                <p class="title is-4">John Smith</p>
+                                <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="box custom-box">
-                    <div class="media">
-                        <div class="media-content" style="display: flex; justify-content: space-between; align-items: center;">
-                            <p class="title is-4">John Smith</p>
-                            <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                    <div class="box custom-box">
+                        <div class="media">
+                            <div class="media-content" style="display: flex; justify-content: space-between; align-items: center;">
+                                <p class="title is-4">John Smith</p>
+                                <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="box custom-box">
-                    <div class="media">
-                        <div class="media-content" style="display: flex; justify-content: space-between; align-items: center;">
-                            <p class="title is-4">John Smith</p>
-                            <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                    <div class="box custom-box">
+                        <div class="media">
+                            <div class="media-content" style="display: flex; justify-content: space-between; align-items: center;">
+                                <p class="title is-4">John Smith</p>
+                                <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="box custom-box">
-                    <div class="media">
-                        <div class="media-content" style="display: flex; justify-content: space-between; align-items: center;">
-                            <p class="title is-4">John Smith</p>
-                            <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                    <div class="box custom-box">
+                        <div class="media">
+                            <div class="media-content" style="display: flex; justify-content: space-between; align-items: center;">
+                                <p class="title is-4">John Smith</p>
+                                <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="box custom-box">
-                    <div class="media">
-                        <div class="media-content" style="display: flex; justify-content: space-between; align-items: center;">
-                            <p class="title is-4">John Smith</p>
-                            <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                    <div class="box custom-box">
+                        <div class="media">
+                            <div class="media-content" style="display: flex; justify-content: space-between; align-items: center;">
+                                <p class="title is-4">John Smith</p>
+                                <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+           <!-- mapbox map -->
+        <div id='map' style='width: 400px; height: 400px;'></div>
     </div>
+    <!-- jquery script-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>   
+       <!-- script.js -->
     <script src="/assets/js/script.js"></script>
 </body>
-
 </html>
