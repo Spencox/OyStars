@@ -959,7 +959,7 @@ function search(cityName) {
   if (cityName) {
     getOysterBars(cityName)
       .then(function (oysterBarData) {
-        buildResults(oysterBarData);
+        //buildResults(oysterBarData);
         display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
       })
       .catch(function (error) {
@@ -988,9 +988,9 @@ function getOysterBars(cityName) {
   const options = {
     method: 'GET',
     headers: {
-      accept: '*/*',
-      Authorization: `Bearer ${apiKey}`,
-      'Access-Control-Allow-Origin': '*'
+        accept: '*/*',
+        Authorization: `Bearer ${apiKey}`,
+        'Access-Control-Allow-Origin': '*'
     }
   };
 
@@ -998,8 +998,8 @@ function getOysterBars(cityName) {
   return fetch(searchUrl, options)
     .then(response => response.json())
     .then(data => {
-      buildResults(data);
-      display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
+        buildResults(data);
+        display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
     })
     .catch(err => console.error(err));
 }
