@@ -19,14 +19,14 @@
         <div class="column is-half">
             <div class="card is-outlined">
                 <!-- search bar-->
-                <div class="field has-addons">
+                <form is="search-form-2" class="field has-addons" role="search">
                     <div class="control is-expanded">
-                        <input class="input" type="text" placeholder="Type in City Name">
+                        <input id="search-2" class="input" type="search" placeholder="Type in City Name">
                     </div>
                     <div class="control">
-                        <a class="button is-info">Search</a>
+                        <button type="submit" class="button is-info">Search</button>
                     </div>
-                </div>
+                </form>
                 <!-- results from API -->
                 <div class="box custom-box">
                     <div class="media">
