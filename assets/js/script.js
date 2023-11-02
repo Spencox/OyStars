@@ -1054,3 +1054,22 @@ $(document).ready(function () {
   });
 });
 
+// ---------------- map box API implementation --------------------------//
+
+// map.js
+
+// Include the Mapbox GL JavaScript library
+var script = document.createElement('script');
+script.src = 'https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js';
+document.head.appendChild(script);
+
+// Wait for the Mapbox GL library to load
+script.onload = function() {
+  mapboxgl.accessToken = 'pk.eyJ1Ijoic3BlbmNveCIsImEiOiJjbG9oN3lrZ2cxNTQwMmtvMXhobzNjNGtkIn0.EJ4_kGTLF2H6xpOh2jV9TA';
+  
+  // Initialize the map once the library is loaded
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+  });
+};
