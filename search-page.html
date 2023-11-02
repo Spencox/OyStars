@@ -3,55 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- link to bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- link to google fonts (Girassol) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Girassol">
     <title>Oystars/Location Search</title>
 </head>
-<body>
+<body id="search-page-body">
   
-   <!--  <div class="columns is-desktop">
-        <div class="column">1</div>
-        <div class="column">2</div>
-        <div class="column">3</div>
-        <div class="column">4</div>
-      </div>  -->
- 
-      <div class="columns is-mobile">
-        <fieldset>
-            <legend>Oystar Search</legend>    
-        <p>
-        <label for="search city"></label>
-        <input type="text" name="searchCity" 
-        id="searchCity" placeholder="Search City"
-        autocomplete="on" required autofocus>
-    </p> 
+    <header id="search-title">
+        <h2>Oystars</h2>
+    </header>
 
- <!-- Buttons for how many stars and the location -->   
+    <!-- city search section -->
+    <section class="column is-two-fifths">
+        <div class="field has-addons">
+            <div class="control is-expanded">
+                <input class="input" type="text"  id="searchCity" name="searchCity" placeholder="Search City" autocomplete="on" required autofocus>
+            </div>
+            <div class="control">
+                <a class="button is-link">Search</a>
+            </div>
+        </div>
+    </section>
+    
 
-<!-- <div class="column">   
-        <button style="font-size: 25px; background-color: #a49191; color: rgb(14, 85, 109);"> Search City </button>
-    <p></p> 
-</div>  --> 
+   
+    <section class="container">
+         <!-- results section -->
+        <div class="results-container">
+            <div>
+                <button class="rate-button button is-warning">Results 5 Stars</button> 
+            </div>  
 
- 
-<div class="column">
-        <button style="font-size: 25px; background-color: #a49191; color: rgb(14, 85, 109); border-radius: 15%;"> Results 5 Stars</button>
-    <p></p>  
-</div>  
+            <div>
+                <button class="rate-button button is-warning">Results 4 Stars</button>
+            </div>  
 
-<div class="column">
-        <button style="font-size: 25px; background-color: #a49191; color: rgb(14, 85, 109);border-radius: 15%;"> Results 4 Stars</button>
-   <p></p>
-</div>  
+            <div>
+                <button class="rate-button button is-warning">Results 3 Stars</button>
+            </div>  
 
+            <div>
+                <button class="rate-button button is-warning">Results 2 Stars</button>
+            </div>  
 
-<button style="font-size: 25px; background-color: #a49191; color: rgb(14, 85, 109); border-radius: 15%;"> Results 3 Stars</button>
-    <p></p>
-<button style="font-size: 25px; background-color: #a49191; color: rgb(14, 85, 109);border-radius: 15%"> Results 2 Stars</button> 
-    <p></p>
-<button style="font-size: 25px; background-color: #a49191; color: rgb(14, 85, 109); border-radius: 15%">All Other Results</button> 
-    <p></p>
+            <div>
+                <button class="rate-button button is-warning">Results 1 Stars</button>
+            </div>  
+        </div>
 
-</div> 
+        <!-- map section -->
+        <div class="map-container">
+            <img src="./assets/images/placeholder.jpg" width="300" height="300">
+        </div>
+    </section>
 
-
+    <script src="./assets/js/script.js"></script>
 </body>
 </html> 
