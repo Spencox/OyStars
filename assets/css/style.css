@@ -29,18 +29,25 @@ html, body {
     font-size: 40px;
     font-weight: bolder;
     font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 100px;
 }
 
-.search-button-container {
-    position: relative;
-    z-index: 1;
-    margin-top: 100px;
-    text-align: center;
+@media screen and (max-width: 768px) {
+    #app-title  {
+        font-size: 100px;
+    }
+    #quote {
+        font-size: 30px;
+    }
 }
+    
+
+
 
 
 
 /* style for search page html file */
+
 #search-title {
     text-align: center;
     font-family: 'Girassol', serif;
@@ -50,7 +57,10 @@ html, body {
 }
 
 #search-page-body {
-    background-color: rgb(92, 92, 92);
+    background-color: dimgray;
+    background-image: url(../images/ben-stern-4n96lyJd2Xs-unsplash\ \(1\).jpg);
 }
+
+
 
 

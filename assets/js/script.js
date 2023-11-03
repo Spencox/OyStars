@@ -1,8 +1,9 @@
 
-// const searchButton = document.getElementById("search-oysters")
-// searchButton.addEventListener("click", function() {
-//     window.location.href = "search-page.html"
-// });
+// main page search button
+const searchButton = document.querySelector(".search-oysters")
+searchButton.addEventListener("click", function() {
+    window.location.href = "search-page.html"
+});
 
 const sampleResults = {
   "businesses": [
