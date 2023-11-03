@@ -47,6 +47,7 @@ html, body {
 
 
 /* style for search page html file */
+
 #search-title {
     text-align: center;
     font-family: 'Girassol', serif;
@@ -58,5 +59,7 @@ html, body {
 #search-page-body {
     background-color: rgb(92, 92, 92);
 }
+
+
 
 
