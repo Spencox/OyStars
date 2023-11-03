@@ -925,6 +925,9 @@ const sampleResults = {
     }
   }
 }
+const sampleMarkers =
+[{"name":"Gallier Restaurant & Oyster Bar","rating":4.5,"latitude":29.9533,"longitude":-90.07077,"distance":0.8102680346774834},{"name":"Mr Ed's Oyster Bar - Bienville","rating":4.5,"latitude":29.9537198203863,"longitude":-90.0659187477944,"distance":1.075593533762825},{"name":"Pêche","rating":4.5,"latitude":29.94506,"longitude":-90.06901,"distance":1.1613427582915772},{"name":"Sidecar Nola Patio & Oyster Bar","rating":4.5,"latitude":29.94054,"longitude":-90.069184,"distance":1.3844150163047801},{"name":"P & J Oyster Co.","rating":4.5,"latitude":29.95962,"longitude":-90.06882,"distance":0.9277071900103396}]
+
 
 // DOM variables
 const searchFormInput2El = $('form[is="search-form-2"]');
@@ -933,7 +936,8 @@ const oysterRatingShowEl = $('.card .box.custom-box span');
 
 // global variables
 let oysterBars = [];
-
+let barGeoMarkers = [];
+let mapCenter = [];
 
 // helper function to convert meters to miles
 function meterToMiles(meters) {
@@ -959,9 +963,12 @@ const searchBarInput = function (event) {
 function search(cityName) {
   if (cityName) {
     getOysterBars(cityName)
-      .then(function (oysterBarData) {
-        console.log(oysterBarData);
+      .then(() =>{
+        localStorage.setItem("Latest Search" , JSON.stringify(oysterBars));
+        localStorage.setItem("Map Center" , mapCenter);
+        
         display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
+        setMapMarkers();
       })
       .catch(function (error) {
         console.log("Error fetching geolocation data:", error);
@@ -970,7 +977,6 @@ function search(cityName) {
     console.log("Could not find city");
   }
 }
-
 
 function getOysterBars(cityName) {
   // API pulls
@@ -983,7 +989,8 @@ function getOysterBars(cityName) {
   const CORSanywhere = 'https://cors-anywhere.herokuapp.com/'
   const searchUrl = `${CORSanywhere}https://api.yelp.com/v3/businesses/search?location=${city}&term=${term}&radius=${radius}&limit=20`;
   
-  console.log(searchUrl);
+  // reset center of map
+  mapCenter = [];  
 
     // api header and method
   const options = {
@@ -1000,6 +1007,8 @@ function getOysterBars(cityName) {
     .then(response => response.json())
     .then(data => {
         buildResults(data);
+        mapCenter = [data.region.center.longitude, data.region.center.latitude];
+        updateMap();
         display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
     })
     .catch(err => console.error(err));
@@ -1013,6 +1022,7 @@ function sortRatingsDec(businessObjArr) {
 }
 
 function buildResults(results) {
+    barGeoMarkers = [];
     const highlyRated = sortRatingsDec(results.businesses);
     // take top 5 
     const displayRating = highlyRated.slice(0, 5);
@@ -1030,8 +1040,20 @@ function buildResults(results) {
 }
 
 // for testing
-// buildResults(sampleResults);
-// display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
+buildResults(sampleResults);
+display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
+setMapMarkers()
+
+// set map markers for display
+function setMapMarkers() {
+  const storedGeoData = sampleMarkers; //JSON.parse(localStorage.getItem("Latest Search"));
+  storedGeoData.forEach(bar =>{
+    const lat = bar.latitude;
+    const lon = bar.longitude;
+    barGeoMarkers.push([lon, lat]);
+  })
+   console.log(barGeoMarkers);
+}
 
 // display OyStar's recommendations
 function display5Recs(oysterBarsArr, names, ratings) {
@@ -1064,15 +1086,27 @@ var script = document.createElement('script');
 script.src = 'https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js';
 document.head.appendChild(script);
 
+var map;
+
 // Wait for the Mapbox GL library to load
 script.onload = function() {
   mapboxgl.accessToken = 'pk.eyJ1Ijoic3BlbmNveCIsImEiOiJjbG9oN3lrZ2cxNTQwMmtvMXhobzNjNGtkIn0.EJ4_kGTLF2H6xpOh2jV9TA';
-
+  
   // Initialize the map once the library is loaded
-  var map = new mapboxgl.Map({
+    map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [-97.7431, 30.2672], // Austin, TX coordinates
+    center: [-97.7431, 30.2672], // Default center (Austin, TX coordinates)
     zoom: 10 // Adjust the zoom level as needed
   });
+};
+
+function updateMap(){
+  console.log(mapCenter);
+  if (map) {
+    console.log("in if statemetn")
+    map.setCenter(mapCenter);
+  } else {
+    console.error('Map is not yet initialized.');
+  }
 }
