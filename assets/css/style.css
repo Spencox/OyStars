@@ -53,18 +53,4 @@ html, body {
     background-color: rgb(92, 92, 92);
 }
 
-.rate-button {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 25px;
-    margin-top: 20px;
-}
 
-.container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.results-contianer {
-    margin-left: 20px;
-    
-}
