@@ -1,13 +1,10 @@
-/* styles all html files */
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
-
-
-/* style for main page html file */
 #main-page-body {
     background-image: url(../images/oyster-lemon-gif.gif);
     background-size: cover;
@@ -41,25 +38,6 @@ html, body {
     }
 }
     
-
-
-
-
-
-/* style for search page html file */
-
-#search-title {
-    text-align: center;
-    font-family: 'Girassol', serif;
-    font-size: 80px;
-    margin-bottom: 25px;
-    color: white;
-}
-
-#search-page-body {
-    background-color: dimgray;
-    background-image: url(../images/ben-stern-4n96lyJd2Xs-unsplash\ \(1\).jpg);
-}
 
 
 
