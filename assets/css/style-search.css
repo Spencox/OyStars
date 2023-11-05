@@ -1,20 +1,62 @@
-html, body {
-    height: 100%;
+html {
+    height: fit-content;
     margin: 0;
     padding: 0;
 }
 
-#search-title {
-    text-align: center;
-    font-family: 'Girassol', serif;
-    font-size: 100px;
-    margin-bottom: 25px;
-    color: white;
-}
-
-#search-page-body {
+body {
     background-image: url(../images/ben-stern-4n96lyJd2Xs-unsplash\ \(1\).jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
+header {
+    text-align: center;
+    margin-bottom: 25px;
+    color: white;
+}
+
+#search-title {
+    font-family: 'Girassol', serif;
+    font-size: 100px;
+    letter-spacing: 5px;
+}
+
+#search-quote {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    font-weight: bolder;
+    
+    
+}
+
+.box p, .box span {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+#map {
+    border-radius: 8px; 
+    margin-top: -15px;
+    border: 5px solid black;
+}
+
+.media-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+@media screen and (max-width: 768px) {
+    #map {
+        display: none;
+    }
+    .media-content {
+        display: inline;
+    }
+}
+
+
+   
