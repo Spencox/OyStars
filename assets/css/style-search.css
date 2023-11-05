@@ -1,5 +1,5 @@
 html {
-    height: 100%;
+    height: fit-content;
     margin: 0;
     padding: 0;
 }
@@ -13,22 +13,33 @@ body {
 
 header {
     text-align: center;
-    font-family: 'Girassol', serif;
-    font-size: 100px;
     margin-bottom: 25px;
     color: white;
 }
 
-p, span {
+#search-title {
+    font-family: 'Girassol', serif;
+    font-size: 100px;
+    letter-spacing: 5px;
+}
+
+#search-quote {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    font-weight: bolder;
+    
+    
+}
+
+.box p, .box span {
     font-family: 'Courier New', Courier, monospace;
 }
 
 
 #map {
     border-radius: 8px; 
-    margin-top: -10px;
-
-    
+    margin-top: -15px;
+    border: 5px solid black;
 }
 
 .media-content {
@@ -43,3 +54,5 @@ p, span {
     }
     
 }
+
+   
