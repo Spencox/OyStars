@@ -921,9 +921,15 @@ const sampleResults = {
 const sampleMarkers =
 [{"name":"Gallier Restaurant & Oyster Bar","rating":4.5,"latitude":29.9533,"longitude":-90.07077,"distance":0.8102680346774834},{"name":"Mr Ed's Oyster Bar - Bienville","rating":4.5,"latitude":29.9537198203863,"longitude":-90.0659187477944,"distance":1.075593533762825},{"name":"Pêche","rating":4.5,"latitude":29.94506,"longitude":-90.06901,"distance":1.1613427582915772},{"name":"Sidecar Nola Patio & Oyster Bar","rating":4.5,"latitude":29.94054,"longitude":-90.069184,"distance":1.3844150163047801},{"name":"P & J Oyster Co.","rating":4.5,"latitude":29.95962,"longitude":-90.06882,"distance":0.9277071900103396}]
 
+// catch variable from previous page
+document.addEventListener("DOMContentLoaded", () => {
+  // Get the mainVariable from the main page
+  const searchCity = window.parent.mainSearchCity;
+  console.log(searchCity);
+
+});
 
 // DOM variables
-const searchFormInput2E1 = $('form[id="search-form-1"]');
 const searchFormInput2El = $('form[id="search-form-2"]');
 const oysterBarShowEl = $('.card .box.custom-box p');
 const oysterRatingShowEl = $('.card .box.custom-box span');
@@ -943,6 +949,13 @@ function meterToMiles(meters) {
 function parameterize(inputString) {
     return encodeURIComponent(inputString);
 } 
+
+function init() {
+    const mainSearchInput = localStorage.getItem("Main Search");
+    if(mainSearchInput){
+      search(mainSearchInput);
+    }
+}
 
 // search bar input 
 const searchBarInput = function (event) {
@@ -1064,22 +1077,16 @@ function display5Recs(oysterBarsArr, names, ratings) {
     });
 }
 
-$(document).ready(function () {
-  searchFormInput2El.on('submit', function (event) {
-    event.preventDefault();
-    searchBarInput(event);
-  });
-});
-
 // secondary search page
 $(document).ready(function () {
   searchFormInput2El.on('submit', function (event) {
     event.preventDefault();
+    console.log(event);
     searchBarInput(event);
   });
 });
 
-
+init();
 
 // ---------------- map box API implementation --------------------------//
 
@@ -1098,7 +1105,7 @@ var map;
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [-97.7431, 30.2672], // Default center (Austin, TX coordinates)
-    zoom: 11 // Adjust the zoom level as needed
+    zoom: 10 // Adjust the zoom level as needed
   });
 
 // Function to create markers
