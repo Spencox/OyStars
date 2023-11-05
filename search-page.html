@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Girassol">
     <!-- mapbox API styling-->
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
     <title>Oystars/Location Search</title>
 </head>
 <body id="search-page-body">
@@ -23,7 +24,7 @@
             <div class="column is-three-quarters">
                 <div class="card is-outlined">
                     <!-- search bar-->
-                    <form is="search-form-2" class="field has-addons" role="search">
+                    <form id="search-form-2" class="field has-addons" role="search">
                         <div class="control is-expanded">
                             <input id="search-2" class="input" type="search" placeholder="Type in City Name">
                         </div>

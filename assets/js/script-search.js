@@ -923,7 +923,8 @@ const sampleMarkers =
 
 
 // DOM variables
-const searchFormInput2El = $('form[is="search-form-2"]');
+const searchFormInput2E1 = $('form[id="search-form-1"]');
+const searchFormInput2El = $('form[id="search-form-2"]');
 const oysterBarShowEl = $('.card .box.custom-box p');
 const oysterRatingShowEl = $('.card .box.custom-box span');
 
@@ -931,6 +932,7 @@ const oysterRatingShowEl = $('.card .box.custom-box span');
 let oysterBars = [];
 let barGeoMarkers = [];
 let mapCenter = [];
+let currentMarkers = [];
 
 // helper function to convert meters to miles
 function meterToMiles(meters) {
@@ -959,7 +961,7 @@ function search(cityName) {
       .then(() =>{
         localStorage.setItem("Latest Search" , JSON.stringify(oysterBars));
         localStorage.setItem("Map Center" , mapCenter);
-        
+        removeMarkers();
         display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
         setMapMarkers();
       })
@@ -1033,19 +1035,19 @@ function buildResults(results) {
 }
 
 // for testing
-buildResults(sampleResults);
-display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
-setMapMarkers()
+//buildResults(sampleResults);
+//display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
+//setMapMarkers();
 
 // set map markers for display
 function setMapMarkers() {
-  const storedGeoData = sampleMarkers; //JSON.parse(localStorage.getItem("Latest Search"));
+  const storedGeoData = JSON.parse(localStorage.getItem("Latest Search"));
   storedGeoData.forEach(bar =>{
     const lat = bar.latitude;
     const lon = bar.longitude;
     barGeoMarkers.push([lon, lat]);
   })
-   console.log(barGeoMarkers);
+  makeMarkers(barGeoMarkers);
 }
 
 // display OyStar's recommendations
@@ -1065,24 +1067,30 @@ function display5Recs(oysterBarsArr, names, ratings) {
 $(document).ready(function () {
   searchFormInput2El.on('submit', function (event) {
     event.preventDefault();
-    console.log('Button Works');
     searchBarInput(event);
   });
 });
 
+// secondary search page
+$(document).ready(function () {
+  searchFormInput2El.on('submit', function (event) {
+    event.preventDefault();
+    searchBarInput(event);
+  });
+});
+
+
+
 // ---------------- map box API implementation --------------------------//
 
-// map.js
-
 // Include the Mapbox GL JavaScript library
-var script = document.createElement('script');
-script.src = 'https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js';
-document.head.appendChild(script);
+// var script = document.createElement('script');
+// script.src = 'https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js';
+// document.head.appendChild(script);
 
 var map;
 
 // Wait for the Mapbox GL library to load
-script.onload = function() {
   mapboxgl.accessToken = 'pk.eyJ1Ijoic3BlbmNveCIsImEiOiJjbG9oN3lrZ2cxNTQwMmtvMXhobzNjNGtkIn0.EJ4_kGTLF2H6xpOh2jV9TA';
   
   // Initialize the map once the library is loaded
@@ -1090,16 +1098,37 @@ script.onload = function() {
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [-97.7431, 30.2672], // Default center (Austin, TX coordinates)
-    zoom: 10 // Adjust the zoom level as needed
+    zoom: 11 // Adjust the zoom level as needed
   });
-};
 
+// Function to create markers
+function makeMarkers(markerArr) {
+  // Create new markers based on updatedMarkerArr
+  markerArr.forEach(marker => {
+    const m = new mapboxgl.Marker()
+      .setLngLat(marker)
+      .addTo(map);
+      currentMarkers.push(m);
+  });
+}
+
+// re-centers map
 function updateMap(){
-  console.log(mapCenter);
   if (map) {
-    console.log("in if statemetn")
     map.setCenter(mapCenter);
+    removeMarkers();
   } else {
     console.error('Map is not yet initialized.');
+  }
+}
+
+// removes existing markers
+function removeMarkers() {
+  if (currentMarkers.length > 0) {
+    currentMarkers.forEach(marker => {
+      console.log(marker);
+      marker.remove();
+    });
+    currentMarkers = []; // Clear the currentMarkers array
   }
 }
