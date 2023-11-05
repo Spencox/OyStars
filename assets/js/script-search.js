@@ -922,9 +922,16 @@ const sampleResults = {
 const sampleMarkers =
 [{"name":"Gallier Restaurant & Oyster Bar","rating":4.5,"latitude":29.9533,"longitude":-90.07077,"distance":0.8102680346774834},{"name":"Mr Ed's Oyster Bar - Bienville","rating":4.5,"latitude":29.9537198203863,"longitude":-90.0659187477944,"distance":1.075593533762825},{"name":"Pêche","rating":4.5,"latitude":29.94506,"longitude":-90.06901,"distance":1.1613427582915772},{"name":"Sidecar Nola Patio & Oyster Bar","rating":4.5,"latitude":29.94054,"longitude":-90.069184,"distance":1.3844150163047801},{"name":"P & J Oyster Co.","rating":4.5,"latitude":29.95962,"longitude":-90.06882,"distance":0.9277071900103396}]
 
+// catch variable from previous page
+document.addEventListener("DOMContentLoaded", () => {
+  // Get the mainVariable from the main page
+  const searchCity = window.parent.mainSearchCity;
+  console.log(searchCity);
+
+});
 
 // DOM variables
-const searchFormInput2El = $('form[is="search-form-2"]');
+const searchFormInput2El = $('form[id="search-form-2"]');
 const oysterBarShowEl = $('.card .box.custom-box p');
 const oysterRatingShowEl = $('.card .box.custom-box span');
 
@@ -932,6 +939,7 @@ const oysterRatingShowEl = $('.card .box.custom-box span');
 let oysterBars = [];
 let barGeoMarkers = [];
 let mapCenter = [];
+let currentMarkers = [];
 
 // helper function to convert meters to miles
 function meterToMiles(meters) {
@@ -942,6 +950,13 @@ function meterToMiles(meters) {
 function parameterize(inputString) {
     return encodeURIComponent(inputString);
 } 
+
+function init() {
+    const mainSearchInput = localStorage.getItem("Main Search");
+    if(mainSearchInput){
+      search(mainSearchInput);
+    }
+}
 
 // search bar input 
 const searchBarInput = function (event) {
@@ -960,7 +975,7 @@ function search(cityName) {
       .then(() =>{
         localStorage.setItem("Latest Search" , JSON.stringify(oysterBars));
         localStorage.setItem("Map Center" , mapCenter);
-        
+        removeMarkers();
         display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
         setMapMarkers();
       })
@@ -1034,19 +1049,19 @@ function buildResults(results) {
 }
 
 // for testing
-buildResults(sampleResults);
-display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
-setMapMarkers()
+//buildResults(sampleResults);
+//display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
+//setMapMarkers();
 
 // set map markers for display
 function setMapMarkers() {
-  const storedGeoData = sampleMarkers; //JSON.parse(localStorage.getItem("Latest Search"));
+  const storedGeoData = JSON.parse(localStorage.getItem("Latest Search"));
   storedGeoData.forEach(bar =>{
     const lat = bar.latitude;
     const lon = bar.longitude;
     barGeoMarkers.push([lon, lat]);
   })
-   console.log(barGeoMarkers);
+  makeMarkers(barGeoMarkers);
 }
 
 // display OyStar's recommendations
@@ -1063,27 +1078,27 @@ function display5Recs(oysterBarsArr, names, ratings) {
     });
 }
 
+// secondary search page
 $(document).ready(function () {
   searchFormInput2El.on('submit', function (event) {
     event.preventDefault();
-    console.log('Button Works');
+    console.log(event);
     searchBarInput(event);
   });
 });
 
+init();
+
 // ---------------- map box API implementation --------------------------//
 
-// map.js
-
 // Include the Mapbox GL JavaScript library
-var script = document.createElement('script');
-script.src = 'https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js';
-document.head.appendChild(script);
+// var script = document.createElement('script');
+// script.src = 'https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js';
+// document.head.appendChild(script);
 
 var map;
 
 // Wait for the Mapbox GL library to load
-script.onload = function() {
   mapboxgl.accessToken = 'pk.eyJ1Ijoic3BlbmNveCIsImEiOiJjbG9oN3lrZ2cxNTQwMmtvMXhobzNjNGtkIn0.EJ4_kGTLF2H6xpOh2jV9TA';
   
   // Initialize the map once the library is loaded
@@ -1093,14 +1108,35 @@ script.onload = function() {
     center: [-97.7431, 30.2672], // Default center (Austin, TX coordinates)
     zoom: 10 // Adjust the zoom level as needed
   });
-};
 
+// Function to create markers
+function makeMarkers(markerArr) {
+  // Create new markers based on updatedMarkerArr
+  markerArr.forEach(marker => {
+    const m = new mapboxgl.Marker()
+      .setLngLat(marker)
+      .addTo(map);
+      currentMarkers.push(m);
+  });
+}
+
+// re-centers map
 function updateMap(){
-  console.log(mapCenter);
   if (map) {
-    console.log("in if statemetn")
     map.setCenter(mapCenter);
+    removeMarkers();
   } else {
     console.error('Map is not yet initialized.');
+  }
+}
+
+// removes existing markers
+function removeMarkers() {
+  if (currentMarkers.length > 0) {
+    currentMarkers.forEach(marker => {
+      console.log(marker);
+      marker.remove();
+    });
+    currentMarkers = []; // Clear the currentMarkers array
   }
 }
