@@ -15,5 +15,3 @@ searchFormInput1El.on('submit', function (event) {
 });
 
 
-
-
