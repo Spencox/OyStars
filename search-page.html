@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style-search.css">
+    <!-- link to bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- link to google fonts (Girassol) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Girassol">
+    <!-- mapbox API styling-->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <title>Oystars/Location Search</title>
+</head>
+<body id="search-page-body">
+    <header id="search-title">
+        <h2>OyStars</h2>
+    </header>
+     <!-- search bar-->
+     <div class="columns is-centered m-3">
+          <form id="search-form-2" class="field has-addons" role="search">
+            <div class="control is-expanded">
+              <input id="search-2" class="input" type="search" placeholder="Type in City Name">
+            </div>
+            <div class="control">
+              <button type="submit" class="button is-info">Search</button>
+            </div>
+          </form>
+      </div>
+    <!-- results from API -->
+    <div id="side-by-side" class="container is-flex mt-6">
+        <div class="container is-flex is-align-content-center is-justify-content-center" style="height: 100vh; display: flex;">
+            <div class="column is-half" id='card-half'>
+                <!-- Displays if no results -->
+                <div id="no-results" class="hidden card2 is-outlined">
+                    <h1 class="title">😒 there are no Oyster Bars here.... Search Again</h1>     
+                </div>
+                <div class="card is-outlined"  id='results-card'>
+                    <!-- Current City -->
+                    <div class="current-city has-background-grey-dark">
+                        <div class="media">
+                            <p id='current-city' class="title p-4 m-2 has-text-centered has-text-link-light" style="width: 100%">CITY NAME</p>
+                        </div>
+                    </div>
+                    <!-- Results from API -->
+                    <div class="box custom-box">
+                        <div class="media">
+                            <div class="media-content" style="display: flex; justify-content: space-between; white-space: normal; align-items: center;">
+                                <p class="title">John Smith</p>
+                                <span class="subtitle">Rating ⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box custom-box">
+                        <div class="media">
+                            <div class="media-content" style="display: flex; justify-content: space-between; white-space: normal; align-items: center;">
+                                <p class="title">Jane Doe</p>
+                                <span class="subtitle">Rating ⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- More boxes here -->
+                    <div class="box custom-box">
+                        <div class="media">
+                            <div class="media-content" style="display: flex; justify-content: space-between; white-space: normal; align-items: center;">
+                                <p class="title">Alice Johnson</p>
+                                <span class="subtitle">Rating ⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box custom-box">
+                        <div class="media">
+                            <div class="media-content" style="display: flex; justify-content: space-between; white-space: normal; align-items: center;">
+                                <p class="title">Bob Smith</p>
+                                <span class="subtitle">Rating ⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box custom-box">
+                        <div class="media">
+                            <div class="media-content" style="display: flex; justify-content: space-between; white-space: normal; align-items: center;">
+                                <p class="title">Eve Johnson</p>
+                                <span class="subtitle">Rating ⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mapbox map -->
+            <div class='media-content' id='map' style='flex: 1; margin-top: 50px; height: 40%;'>
+            </div>
+        </div>
+    </div>
+    <!-- jquery script-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>   
+       <!-- script.js -->  
+    <script src="./assets/js/script-search.js"></script>
+</body>
+</html> 
