@@ -9,9 +9,12 @@ html {
     letter-spacing: 2px;
 }
 
-* {
+#search-title {
     font-family: 'Girassol', serif;
-    letter-spacing: 2px;
+    font-size: 150px;
+    text-align: center;
+    color: white;
+    letter-spacing: 5px;
 }
 
 body {
