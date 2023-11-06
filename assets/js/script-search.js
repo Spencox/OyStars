@@ -84,7 +84,7 @@ function getOysterBars(cityName) {
   const radius = parameterize(16000);
   const city = parameterize(cityName);
 
-  const apiKey = "UqGn4RuB6AvWfBgxq3_ML8LFC-Lc95yUfMtpDCKT2Z2Pup-ya13UU8n7bw10kNB3R-Gz8ZGmlaUsXKWrmhLU_aIdfpcJBc0URG4ers9r4IAnwxA8p4DXKyd16GhIZXYx"
+  const apiKey = "z-u7s7xmANf0NpaN98rtue892AqWXdBleTvs82zeLMBKWa7jeaRodzw-QwYCrMFM8iVpiLK_SXimPySTPaRtFna9Kb9kLGWZL4OO4u_gnQiF5dFJ5UtxFeFweN9IZXYx"
 
   const CORSanywhere = 'https://cors-anywhere.herokuapp.com/'
   const searchUrl = `${CORSanywhere}https://api.yelp.com/v3/businesses/search?location=${city}&term=${term}&radius=${radius}&limit=10`;
@@ -108,6 +108,7 @@ function getOysterBars(cityName) {
     .then(data => {
         buildResults(data);
         mapCenter = [data.region.center.longitude, data.region.center.latitude];
+        console.log(mapCenter);
         updateMap();
         display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
     })
@@ -142,13 +143,6 @@ function buildResults(results) {
     }); 
 }
 
-// //for testing -----------------------------------------------
-// buildResults(sampleResults);
-// $('#current-city').text("New Orleans");
-// display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
-// mapCenter = [sampleResults.region.center.longitude, sampleResults.region.center.latitude];
-// setMapMarkers();
-// //updateMap();
 
 // set map markers for display
 function setMapMarkers() {
@@ -192,7 +186,7 @@ init();
   mapboxgl.accessToken = 'pk.eyJ1Ijoic3BlbmNveCIsImEiOiJjbG9oN3lrZ2cxNTQwMmtvMXhobzNjNGtkIn0.EJ4_kGTLF2H6xpOh2jV9TA';
   
   // Initialize the map once the library is loaded
-    letmap = new mapboxgl.Map({
+    let map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [-97.7431, 30.2672], // Default center (Austin, TX coordinates)
