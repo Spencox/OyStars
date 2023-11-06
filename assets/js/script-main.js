@@ -10,7 +10,6 @@ const searchBarInput = function (event) {
 
 // event lister to pass city name to page two 
 searchFormInput1El.on('submit', function (event) {
-    event.preventDefault();
     searchBarInput(event);
 });
 

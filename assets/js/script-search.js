@@ -921,14 +921,6 @@ const sampleResults = {
 const sampleMarkers =
 [{"name":"Gallier Restaurant & Oyster Bar","rating":4.5,"latitude":29.9533,"longitude":-90.07077,"distance":0.8102680346774834},{"name":"Mr Ed's Oyster Bar - Bienville","rating":4.5,"latitude":29.9537198203863,"longitude":-90.0659187477944,"distance":1.075593533762825},{"name":"Pêche","rating":4.5,"latitude":29.94506,"longitude":-90.06901,"distance":1.1613427582915772},{"name":"Sidecar Nola Patio & Oyster Bar","rating":4.5,"latitude":29.94054,"longitude":-90.069184,"distance":1.3844150163047801},{"name":"P & J Oyster Co.","rating":4.5,"latitude":29.95962,"longitude":-90.06882,"distance":0.9277071900103396}]
 
-// catch variable from previous page
-document.addEventListener("DOMContentLoaded", () => {
-  // Get the mainVariable from the main page
-  const searchCity = window.parent.mainSearchCity;
-  console.log(searchCity);
-
-});
-
 // DOM variables
 const searchFormInput2El = $('form[id="search-form-2"]');
 const oysterBarShowEl = $('.card .box.custom-box p');
@@ -950,6 +942,7 @@ function parameterize(inputString) {
     return encodeURIComponent(inputString);
 } 
 
+// initial search from main page
 function init() {
     const mainSearchInput = localStorage.getItem("Main Search");
     if(mainSearchInput){
@@ -957,12 +950,25 @@ function init() {
     }
 }
 
+// helper function to create stars 
+function starOutput(rating) {
+  let stars = ""
+  const wholeStars = Math.floor(rating);
+  const halfStars = rating % 1;
+  for(let i = 0; i < wholeStars; i++){
+    stars +='⭐'
+  }
+  if(halfStars){
+    stars+= '½'
+  }
+  return stars
+}
+
 // search bar input 
 const searchBarInput = function (event) {
   if(oysterBars) {
     oysterBars = [];
-  }
-  event.preventDefault();  
+  }  
   const cityName = searchFormInput2El.find('input[type="search"]').val().trim();
   search(cityName);
 };
@@ -970,6 +976,10 @@ const searchBarInput = function (event) {
 // performs the calls to the API's and waits for responses before next call
 function search(cityName) {
   if (cityName) {
+    console.log(cityName)
+    $('#current-city').text(cityName);
+    $('#results-card').removeClass('hidden');
+    $('#no-results').addClass('hidden');
     getOysterBars(cityName)
       .then(() =>{
         localStorage.setItem("Latest Search" , JSON.stringify(oysterBars));
@@ -984,6 +994,11 @@ function search(cityName) {
   } else {
     console.log("Could not find city");
   }
+}
+
+function noOysterBars() {
+  $('#results-card').addClass('hidden');
+  $('#no-results').removeClass('hidden');
 }
 
 function getOysterBars(cityName) {
@@ -1019,7 +1034,10 @@ function getOysterBars(cityName) {
         updateMap();
         display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      noOysterBars();
+      console.error(err);
+    });
 }
 
 //helper function to sort array of returned business by rating
@@ -1038,7 +1056,7 @@ function buildResults(results) {
     displayRating.forEach(business => {
         const oystarRec =  {
             name: business.name,
-            rating: business.rating,
+            rating: starOutput(business.rating),
             latitude: business.coordinates.latitude,
             longitude: business.coordinates.longitude,
             distance: meterToMiles(Math.round(business.distance))
