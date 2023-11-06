@@ -1066,10 +1066,10 @@ function buildResults(results) {
     }); 
 }
 
-// for testing
-//buildResults(sampleResults);
-//display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
-//setMapMarkers();
+//for testing
+buildResults(sampleResults);
+display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
+setMapMarkers();
 
 // set map markers for display
 function setMapMarkers() {
@@ -1109,11 +1109,6 @@ init();
 
 // ---------------- map box API implementation --------------------------//
 
-// Include the Mapbox GL JavaScript library
-// var script = document.createElement('script');
-// script.src = 'https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js';
-// document.head.appendChild(script);
-
 var map;
 
 // Wait for the Mapbox GL library to load
@@ -1152,7 +1147,6 @@ function updateMap(){
 function removeMarkers() {
   if (currentMarkers.length > 0) {
     currentMarkers.forEach(marker => {
-      console.log(marker);
       marker.remove();
     });
     currentMarkers = []; // Clear the currentMarkers array
