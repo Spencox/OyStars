@@ -18,8 +18,7 @@
         <h2>OyStars</h2>
     </header>
      <!-- search bar-->
-     <div class="columns is-centered">
-        <div class="column is-half">
+     <div class="columns is-centered m-3">
           <form id="search-form-2" class="field has-addons" role="search">
             <div class="control is-expanded">
               <input id="search-2" class="input" type="search" placeholder="Type in City Name">
@@ -28,12 +27,12 @@
               <button type="submit" class="button is-info">Search</button>
             </div>
           </form>
-        </div>
       </div>
     <!-- results from API -->
     <div id="side-by-side" class="container is-flex mt-6">
         <div class="container is-flex is-align-content-center is-justify-content-center" style="height: 100vh; display: flex;">
-            <div class="column is-half">
+            <div class="column is-half" id='card-half'>
+                <!-- Displays if no results -->
                 <div id="no-results" class="hidden card2 is-outlined">
                     <h1 class="title">😒 there are no Oyster Bars here.... Search Again</h1>     
                 </div>
@@ -89,7 +88,8 @@
                 </div>
             </div>
             <!-- mapbox map -->
-            <div class='media-content' id='map' style='flex: 1; margin-top: 100px; height: 40%;'></div>
+            <div class='media-content' id='map' style='flex: 1; margin-top: 50px; height: 40%;'>
+            </div>
         </div>
     </div>
     <!-- jquery script-->

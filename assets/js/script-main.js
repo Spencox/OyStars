@@ -1,5 +1,6 @@
 // DOM Selector Variables
 const searchFormInput1El = $('form#search-form-1');
+
 // search bar input 
 const searchBarInput = function (event) {
     event.preventDefault();  

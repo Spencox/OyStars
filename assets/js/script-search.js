@@ -12,15 +12,15 @@ let currentMarkers = [];
 
 // helper function to convert meters to miles
 function meterToMiles(meters) {
-    return meters / 1609.344;
+  return meters / 1609.344;
 }
 
-// helper function to encode
+// helper function to encode for API url
 function parameterize(inputString) {
     return encodeURIComponent(inputString);
 } 
 
-// initial search from main page
+// read local storage to see what was searched in main page
 function init() {
     const mainSearchInput = localStorage.getItem("Main Search");
     if(mainSearchInput){
@@ -42,7 +42,14 @@ function starOutput(rating) {
   return stars
 }
 
-// search bar input 
+//helper function to sort array of returned business by rating
+function sortRatingsDec(businessObjArr) {
+  return businessObjArr.sort((a, b) => {
+      return b.rating - a.rating
+  });
+}
+
+// search bar input on search page
 const searchBarInput = function (event) {
   if(oysterBars) {
     oysterBars = [];
@@ -73,6 +80,7 @@ function search(cityName) {
   }
 }
 
+// shows message to user if no city was found
 function noOysterBars() {
   $('#results-card').addClass('hidden');
   $('#no-results').removeClass('hidden');
@@ -92,7 +100,7 @@ function getOysterBars(cityName) {
   // reset center of map
   mapCenter = [];  
 
-    // api header and method
+  // api header and method
   const options = {
     method: 'GET',
     headers: {
@@ -102,13 +110,12 @@ function getOysterBars(cityName) {
     }
   };
 
-  // api call to businesses  
+  // api call to business search API  
   return fetch(searchUrl, options)
     .then(response => response.json())
     .then(data => {
         buildResults(data);
         mapCenter = [data.region.center.longitude, data.region.center.latitude];
-        console.log(mapCenter);
         updateMap();
         display5Recs(oysterBars, oysterBarShowEl, oysterRatingShowEl);
     })
@@ -118,18 +125,16 @@ function getOysterBars(cityName) {
     });
 }
 
-//helper function to sort array of returned business by rating
-function sortRatingsDec(businessObjArr) {
-    return businessObjArr.sort((a, b) => {
-        return b.rating - a.rating
-    });
-}
-
 function buildResults(results) {
     barGeoMarkers = [];
     const highlyRated = sortRatingsDec(results.businesses);
-    // take top 5 
-    const displayRating = highlyRated.slice(0, 5);
+    let displayRating;
+    // take top 5
+    if(highlyRated.length >= 5) {
+      displayRating = highlyRated.slice(0, 5);
+    } else {
+      displayRating = highlyRated;
+    }
     // build objects for each
     displayRating.forEach(business => {
         const oystarRec =  {
@@ -142,7 +147,6 @@ function buildResults(results) {
         oysterBars.push(oystarRec);
     }); 
 }
-
 
 // set map markers for display
 function setMapMarkers() {
@@ -173,7 +177,6 @@ function display5Recs(oysterBarsArr, names, ratings) {
 $(document).ready(function () {
   searchFormInput2El.on('submit', function (event) {
     event.preventDefault();
-    console.log(event);
     searchBarInput(event);
   });
 });

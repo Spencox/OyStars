@@ -11,7 +11,7 @@ html {
 
 #search-title {
     font-family: 'Girassol', serif;
-    font-size: 150px;
+    font-size: 100px;
     text-align: center;
     color: white;
     letter-spacing: 5px;
@@ -50,4 +50,39 @@ body {
 
 .hidden {
     display: none;
+}
+
+/* 768px */
+
+@media screen and (max-width: 768px) {
+    #search-title {
+        font-size: 50px;
+    }
+    
+    #no-results, #results-card  {
+    min-width: 350px;
+    }
+    
+    #map {
+    min-width: 350px;
+    }
+    .container {
+        display: flex;
+        flex-grow: 0;
+        flex-wrap: wrap;
+    }
+    
+    #card-half{
+        margin-top: 150px;
+    }
+    
+    div.custom-box {
+        margin: 0;
+    }
+
+
+    p.title {
+        margin: 0;
+        font-size: 17px;
+    }
 }
