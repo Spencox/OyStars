@@ -1,5 +1,5 @@
-html, body {
-    height: 100%;
+html {
+    height: fit-content;
     margin: 0;
     padding: 0;
 }
@@ -9,15 +9,12 @@ html, body {
     letter-spacing: 2px;
 }
 
-#search-title {
-    text-align: center;
+* {
     font-family: 'Girassol', serif;
-    font-size: 100px;
-    margin-bottom: 25px;
-    color: white;
+    letter-spacing: 2px;
 }
 
-#search-page-body {
+body {
     background-image: url(../images/ben-stern-4n96lyJd2Xs-unsplash\ \(1\).jpg);
     background-size: cover;
     background-repeat: no-repeat;
