@@ -4,6 +4,19 @@ html {
     padding: 0;
 }
 
+* {
+    font-family: 'Girassol', serif;
+    letter-spacing: 2px;
+}
+
+#search-title {
+    font-family: 'Girassol', serif;
+    font-size: 150px;
+    text-align: center;
+    color: white;
+    letter-spacing: 5px;
+}
+
 body {
     background-image: url(../images/ben-stern-4n96lyJd2Xs-unsplash\ \(1\).jpg);
     background-size: cover;
@@ -11,52 +24,30 @@ body {
     background-attachment: fixed;
 }
 
-header {
-    text-align: center;
-    margin-bottom: 25px;
-    color: white;
+.subtitle {
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
 }
 
-#search-title {
-    font-family: 'Girassol', serif;
-    font-size: 100px;
-    letter-spacing: 5px;
-}
-
-#search-quote {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 30px;
-    font-weight: bolder;
-    
-    
-}
-
-.box p, .box span {
-    font-family: 'Courier New', Courier, monospace;
-}
-
-
-#map {
-    border-radius: 8px; 
-    margin-top: -15px;
+#map, #results-card {
     border: 5px solid black;
+    border-radius: 15px;;
 }
 
-.media-content {
+.card2 {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: center; 
+    justify-content: center;
+    background-color: white;
+    border-radius: 15px;
+    border: 5px solid black;
+  }
 
+#no-results {
+    height: 50%;
+    text-align: center;
 }
 
-@media screen and (max-width: 768px) {
-    #map {
-        display: none;
-    }
-    .media-content {
-        display: inline;
-    }
+.hidden {
+    display: none;
 }
-
-
-   
