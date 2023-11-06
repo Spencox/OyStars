@@ -13,75 +13,85 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
     <title>Oystars/Location Search</title>
 </head>
-<body>
-  
-    <header>
-        <h2 id="search-title">Oystars</h2>
-        <p id="search-quote">Your best hope at finding the best oyster bars</p>
+<body id="search-page-body">
+    <header id="search-title">
+        <h2>OyStars</h2>
     </header>
-    <!-- city search section -->
-    <div id="side-by-side" class="container is-flex is-align-items-center">
-        <div class="container is-align-items-center is-justify-content-center">
-            <div class="column is-two-thirds">
-                <div class="card is-outlined">
-                    <!-- search bar-->
-                    <form id="search-form-2" class="field has-addons" role="search">
-                        <div class="control is-expanded">
-                            <input id="search-2" class="input" type="search" placeholder="Type in City Name">
-                        </div>
-                        <div class="control">
-                            <button type="submit" class="button is-info">Search</button>
-                        </div>
-                    </form>
-                    <!-- results from API -->
-                    <div class="box custom-box" style="padding: 1rem; margin-bottom: 1rem;">
+     <!-- search bar-->
+     <div class="columns is-centered">
+        <div class="column is-half">
+          <form id="search-form-2" class="field has-addons" role="search">
+            <div class="control is-expanded">
+              <input id="search-2" class="input" type="search" placeholder="Type in City Name">
+            </div>
+            <div class="control">
+              <button type="submit" class="button is-info">Search</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    <!-- results from API -->
+    <div id="side-by-side" class="container is-flex mt-6">
+        <div class="container is-flex is-align-content-center is-justify-content-center" style="height: 100vh; display: flex;">
+            <div class="column is-half">
+                <div id="no-results" class="hidden card2 is-outlined">
+                    <h1 class="title">😒 there are no Oyster Bars here.... Search Again</h1>     
+                </div>
+                <div class="card is-outlined"  id='results-card'>
+                    <!-- Current City -->
+                    <div class="current-city has-background-grey-dark">
                         <div class="media">
-                            <div class="media-content">
-                                <p class="title is-5">John Smith</p>
-                                <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                            <p id='current-city' class="title p-4 m-2 has-text-centered has-text-link-light" style="width: 100%">CITY NAME</p>
+                        </div>
+                    </div>
+                    <!-- Results from API -->
+                    <div class="box custom-box">
+                        <div class="media">
+                            <div class="media-content" style="display: flex; justify-content: space-between; white-space: normal; align-items: center;">
+                                <p class="title">John Smith</p>
+                                <span class="subtitle">Rating ⭐⭐⭐⭐⭐</span>
                             </div>
                         </div>
                     </div>
-                    <div class="box custom-box" style="padding: 1rem; margin-bottom: 1rem;">
+                    <div class="box custom-box">
                         <div class="media">
-                            <div class="media-content">
-                                <p class="title is-5">John Smith</p>
-                                <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                            <div class="media-content" style="display: flex; justify-content: space-between; white-space: normal; align-items: center;">
+                                <p class="title">Jane Doe</p>
+                                <span class="subtitle">Rating ⭐⭐⭐⭐⭐</span>
                             </div>
                         </div>
                     </div>
-                    <div class="box custom-box" style="padding: 1rem; margin-bottom: 1rem;">
+                    <!-- More boxes here -->
+                    <div class="box custom-box">
                         <div class="media">
-                            <div class="media-content">
-                                <p class="title is-5">John Smith</p>
-                                <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                            <div class="media-content" style="display: flex; justify-content: space-between; white-space: normal; align-items: center;">
+                                <p class="title">Alice Johnson</p>
+                                <span class="subtitle">Rating ⭐⭐⭐⭐⭐</span>
                             </div>
                         </div>
                     </div>
-                    <div class="box custom-box" style="padding: 1rem; margin-bottom: 1rem;">
+                    <div class="box custom-box">
                         <div class="media">
-                            <div class="media-content">
-                                <p class="title is-5">John Smith</p>
-                                <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                            <div class="media-content" style="display: flex; justify-content: space-between; white-space: normal; align-items: center;">
+                                <p class="title">Bob Smith</p>
+                                <span class="subtitle">Rating ⭐⭐⭐⭐⭐</span>
                             </div>
                         </div>
                     </div>
-                    <div class="box custom-box" style="padding: 1rem; margin-bottom: 1rem;">
+                    <div class="box custom-box">
                         <div class="media">
-                            <div class="media-content">
-                                <p class="title is-5">John Smith</p>
-                                <span class="subtitle is-6">Rating ⭐⭐⭐⭐⭐</span>
+                            <div class="media-content" style="display: flex; justify-content: space-between; white-space: normal; align-items: center;">
+                                <p class="title">Eve Johnson</p>
+                                <span class="subtitle">Rating ⭐⭐⭐⭐⭐</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- mapbox map -->
+            <div class='media-content' id='map' style='flex: 1; margin-top: 100px; height: 40%;'></div>
         </div>
-           <!-- mapbox map -->
-        <div id='map' style='width: 650px; height: 500px;'></div>
     </div>
-
-
     <!-- jquery script-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>   
        <!-- script.js -->  
