@@ -27,8 +27,6 @@ header {
     font-family: 'Courier New', Courier, monospace;
     font-size: 30px;
     font-weight: bolder;
-    
-    
 }
 
 .box p, .box span {
@@ -39,7 +37,7 @@ header {
 #map {
     border-radius: 8px; 
     margin-top: -15px;
-    border: 5px solid black;
+    border: 8px solid black;
 }
 
 .media-content {
@@ -55,6 +53,13 @@ header {
     }
     .media-content {
         display: inline;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #map {
+        max-width: 400px;
+        max-height: 350px;
     }
 }
 

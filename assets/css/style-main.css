@@ -29,12 +29,6 @@ html, body {
     margin-bottom: 100px;
 }
 
-.center-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 @media screen and (max-width: 768px) {
     #app-title  {
         font-size: 100px;
