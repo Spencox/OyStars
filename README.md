@@ -6,7 +6,8 @@ This app was created for oyster enthusiasts, to be able to search for high ratin
 
 
 ## Usage
-To open site, click on the link below.
+To open site, click on the link below.\
+https://spencox.github.io/OyStars/
 
 
 It will then direct you to the main page (screenshot below)
@@ -37,6 +38,6 @@ https://bulma.io/documentation/overview/\
 ## Contributors
 Spencer Cox\
 Marcos Jorge\
-Angelica Montoya\
+Angelica Montoya
 
 ## Continued Development 
