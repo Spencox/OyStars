@@ -94,8 +94,8 @@ function getOysterBars(cityName) {
 
   const apiKey = "z-u7s7xmANf0NpaN98rtue892AqWXdBleTvs82zeLMBKWa7jeaRodzw-QwYCrMFM8iVpiLK_SXimPySTPaRtFna9Kb9kLGWZL4OO4u_gnQiF5dFJ5UtxFeFweN9IZXYx"
 
-  const CORSanywhere = 'https://cors-anywhere.herokuapp.com/'
-  const searchUrl = `${CORSanywhere}https://api.yelp.com/v3/businesses/search?location=${city}&term=${term}&radius=${radius}&limit=10`;
+ 
+  const searchUrl = `https://api.yelp.com/v3/businesses/search?location=${city}&term=${term}&radius=${radius}&limit=20`;
   
   // reset center of map
   mapCenter = [];  
