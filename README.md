@@ -9,6 +9,7 @@ This app was created for oyster enthusiasts, to be able to search for high ratin
 To open site, click on the link below.\
 https://spencox.github.io/OyStars/
 
+NOTE: if there is a CORS policy issue got to https://cors-anywhere.herokuapp.com/ select test server and then refresh page. This will allow the app to run.
 
 It will then direct you to the main page (screenshot below)
 To use type the city name you would like to look for and click on the search button.
